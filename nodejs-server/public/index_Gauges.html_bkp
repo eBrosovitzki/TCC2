@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>NodeMCU para detecção de quedas</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container-fluid text-center">
+		<div class="page-header">
+			<img class="img-responsive center-block" style="width: 450px; height: 120px" src="images/iffar.png"
+				alt="logo-full" border="0">
+			<h1 class="lead">NodeMCU para detecção de quedas</h1>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<h2>Acelerômetro X</h2>
+				<canvas id="gauge-accelX" style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+				<div id="txt-gauge-accelX" class="sensor-value"></div>
+			</div>
+			<div class="col-md-4">
+				<h2>Acelerômetro Y</h2>
+				<canvas id="gauge-accelY" style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+				<div id="txt-gauge-accelY" class="sensor-value"></div>
+			</div>
+			<div class="col-md-4">
+				<h2>Acelerômetro Z</h2>
+				<canvas id="gauge-accelZ" style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+				<div id="txt-gauge-accelZ" class="sensor-value"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<h2>Giroscópio X</h2>
+				<canvas id="gauge-gyroX" style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+				<div id="txt-gauge-gyroX" class="sensor-value"></div>
+			</div>
+			<div class="col-md-4">
+				<h2>Giroscópio Y</h2>
+				<canvas id="gauge-gyroY" style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+				<div id="txt-gauge-gyroY" class="sensor-value"></div>
+			</div>
+			<div class="col-md-4">
+				<h2>Giroscópio Z</h2>
+				<canvas id="gauge-gyroZ" style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+				<div id="txt-gauge-gyroZ" class="sensor-value"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Temperatura</h2>
+				<canvas id="gauge-temp" style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+				<div id="txt-gauge-temp" class="sensor-value"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="container-fluid map" id="map" style="width: 350px; height: 200px;"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+	<script type="text/javascript" src="javascript/gauge.js"></script>
+
+	<script>
+		var socket = io.connect();
+
+		socket.on('accelData', function (accelData) {
+			var accelX = accelData.data.accel.accelX
+			var accelY = accelData.data.accel.accelY
+			var accelZ = accelData.data.accel.accelZ
+			var temp = accelData.data.temp
+			var gyroX = accelData.data.gyro.gyroX
+			var gyroY = accelData.data.gyro.gyroY
+			var gyroZ = accelData.data.gyro.gyroZ
+
+			document.getElementById("txt-gauge-accelX").innerHTML = accelX.toFixed(2);
+			document.getElementById("txt-gauge-accelY").innerHTML = accelY.toFixed(2);
+			document.getElementById("txt-gauge-accelZ").innerHTML = accelZ.toFixed(2);
+
+			document.getElementById("txt-gauge-temp").innerHTML = temp.toFixed(0) + "°C";
+
+			document.getElementById("txt-gauge-gyroX").innerHTML = gyroX.toFixed(2);
+			document.getElementById("txt-gauge-gyroY").innerHTML = gyroY.toFixed(2);
+			document.getElementById("txt-gauge-gyroZ").innerHTML = gyroZ.toFixed(2);
+
+			// set gauge value
+			gauge_accelX.set(accelX);
+			gauge_accelY.set(accelY);
+			gauge_accelZ.set(accelZ);
+			gauge_gyroX.set(gyroX);
+			gauge_gyroY.set(gyroY);
+			gauge_gyroZ.set(gyroZ);
+			gauge_temp.set(temp);
+
+			//socket.emit('accelData', "got accelData");
+		});
+	</script>
+</body>
+
+</html>

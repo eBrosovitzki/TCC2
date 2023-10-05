@@ -1,0 +1,11 @@
+{
+  "additionalFiles": "..\\..\\..",
+  "builtInToolsFolders": "",
+  "compiler.optimization_flags": "",
+  "customBuildProperties": "",
+  "fqbn": "esp8266:esp8266:nodemcu:xtal=80,vt=flash,exception=disabled,stacksmash=disabled,ssl=all,mmu=3232,non32xfer=fast,eesz=4M2M,ip=lm2f,dbg=Disabled,lvl=None____,wipe=none,baud=115200",
+  "hardwareFolders": "C:\\Users\\Elvio\\AppData\\Local\\Arduino15\\packages",
+  "otherLibrariesFolders": "D:\\Arquivos\\Documents\\Arduino\\libraries",
+  "runtime.ide.version": "10607",
+  "sketchLocation": "J:\\Meu Drive\\#IFFAR\\2023_1-2_TCC_I-II\\3_Desenvolvimento TCC\\TCC2\\nodemcu-client-arduino"
+}

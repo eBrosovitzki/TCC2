@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Trabalho de Conclusão de Curso - IFFar - 2023</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="container text-center">
+			<img class="img-fluid" src="images/iffar.png" alt="Logo IFFAR" style="width: 450px; height: 120px">
+			<p></p>
+			<h1>Dispositivo Vestível para Detecção de Quedas Acidentais</h1>
+		</div>
+	</header>
+
+	<main>
+		<div class="container">
+
+			<!-- Gauges com informações sobre os eixos X, Y e Z do acelerômetro -->
+			<div class="row">
+				<div class="col-md-4">
+					<h2>Acelerômetro eixo X</h2>
+					<canvas id="gauge-accelX"
+						style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+					<div id="txt-gauge-accelX" class="sensor-value"></div>
+				</div>
+				<div class="col-md-4">
+					<h2>Acelerômetro eixo Y</h2>
+					<canvas id="gauge-accelY"
+						style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+					<div id="txt-gauge-accelY" class="sensor-value"></div>
+				</div>
+				<div class="col-md-4">
+					<h2>Acelerômetro eixo Z</h2>
+					<canvas id="gauge-accelZ"
+						style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+					<div id="txt-gauge-accelZ" class="sensor-value"></div>
+				</div>
+			</div>
+
+			<!-- Gauges com informações sobre os eixos X, Y e Z do giroscópio -->
+
+			<div class="row">
+				<div class="col-md-4">
+					<h2>Giroscópio eixo X</h2>
+					<canvas id="gauge-gyroX"
+						style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+					<div id="txt-gauge-gyroX" class="sensor-value"></div>
+				</div>
+				<div class="col-md-4">
+					<h2>Giroscópio eixo Y</h2>
+					<canvas id="gauge-gyroY"
+						style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+					<div id="txt-gauge-gyroY" class="sensor-value"></div>
+				</div>
+				<div class="col-md-4">
+					<h2>Giroscópio eixo Z</h2>
+					<canvas id="gauge-gyroZ"
+						style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+					<div id="txt-gauge-gyroZ" class="sensor-value"></div>
+				</div>
+			</div>
+
+			<!-- Gauge com informações sobre temperatura -->
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h2>Temperatura ambiente</h2>
+					<canvas id="gauge-temp"
+						style="background-color: transparent; width: 200px; height: 100px;"></canvas>
+					<div id="txt-gauge-temp" class="sensor-value"></div>
+				</div>
+			</div>
+			<hr>
+
+			<div class="row">
+				<h2>Dados dos sensores</h2>
+			</div>
+			<!-- Gráfico do histórico da amplitude -->
+			<div class="row" style="background-color:transparent">
+				<div class="col-md-12">
+					<p>Acelerômetro</p>
+					<div id="amp-chart" style="width: 100%; height: 200px;"></div>
+					<p>Amplitude próxima de 0: Dispositivo em posição normal</p>
+					<p>Amplitude maior que 10: Verificar dispositivo e situação do usuário</p>
+
+				</div>
+			</div>
+			<hr>
+
+			<!-- Gráfico do histórico do ângulo-->
+			<div class="row" style="background-color:transparent">
+				<div class="col-md-12">
+					<p>Giroscópio</p>
+					<div id="angle-chart" style="width: 100%; height: 200px;"></div>
+					<p>Amplitude maior que 10: Dispositivo em posição normal</p>
+					<p>Amplitude próxima de 0: Verificar dispositivo e situação do usuário</p>
+				</div>
+			</div>
+			<hr>
+
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Histórico de eventos detectados:</h2>
+					<ul id="event-history"></ul>
+				</div>
+			</div>
+			<hr>
+
+			<!-- Informações sobre a bateria -->
+			<div class="row">
+				<div class="col-md-12">
+					<h2> Informações do dispositivo:</h2>
+					<!--<div id="battery-gauge" style="width: 200px; height: 100px;"></div>-->
+					<div id="info-node-ip"></div>
+					<div id="info-battery-level"></div>
+					<div id="info-battery-voltage"></div>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</main>
+
+	<footer>
+		<div class="container text-center">
+			<p class="text-muted">Trabalho de Conclusão de Curso 2 - 2023.2</p>
+		</div>
+	</footer>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+	<script type="text/javascript" src="javascript/gauge.js"></script>
+	<script type="text/javascript" src="javascript/scripts.js"></script>
+</body>
+
+</html>
